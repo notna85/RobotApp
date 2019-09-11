@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">bluetoothcarcontroller</string>
+    <string name="forward">Forward</string>
+    <string name="back">Back</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="auto">Auto</string>
+    <string name="manual">Manual</string>
+    <string name="main">Main menu</string>
+    <string name="go">Go</string>
+    <string name="stop">Stop</string>
+    <string name="connect">Connect to Bluetooth Device</string>
+</resources>
