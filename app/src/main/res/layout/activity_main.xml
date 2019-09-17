@@ -4,167 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#555A5A"
     android:orientation="vertical"
     tools:context="com.example.boldi.bluetoothcarcontroller.MainActivity">
 
-    <Button
-        android:id="@+id/forward_btn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="40dp"
-        android:background="#FADCAA"
-        android:text="@string/forward"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+ <Button
+     android:id="@+id/manual_btn"
+     android:layout_width="100dp"
+     android:layout_height="80dp"
+     android:layout_marginTop="20dp"
+     android:layout_marginEnd="40dp"
+     android:background="#A7FFEB"
+     android:text="@string/manual"
+     app:layout_constraintEnd_toStartOf="@+id/button"
+     app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/left_btn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="8dp"
-        android:background="#FADCAA"
-        android:text="@string/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
+ <Button
+     android:id="@+id/auto_btn"
+     android:layout_width="100dp"
+     android:layout_height="80dp"
+     android:layout_marginStart="40dp"
+     android:layout_marginTop="20dp"
+     android:background="#A7FFEB"
+     android:text="@string/auto"
+     app:layout_constraintStart_toEndOf="@+id/button"
+     app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/right_btn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#FADCAA"
-        android:text="@string/right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
+ <Button
+     android:id="@+id/bluetooth_connect_btn"
+     android:layout_width="100dp"
+     android:layout_height="50dp"
+     android:layout_marginStart="40dp"
+     android:layout_marginTop="50dp"
+     android:background="#8C9EFF"
+     android:text="@string/connect"
+     app:layout_constraintStart_toEndOf="@+id/button"
+     app:layout_constraintTop_toBottomOf="@+id/button" />
 
-    <Button
-        android:id="@+id/reverse_btn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:background="#FADCAA"
-        android:text="@string/back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+ <Button
+     android:id="@+id/button"
+     android:layout_width="20dp"
+     android:layout_height="20dp"
+     android:layout_marginStart="8dp"
+     android:layout_marginTop="50dp"
+     android:layout_marginEnd="8dp"
+     android:background="#FFD180"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/main_btn"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:background="#82B1FF"
-        android:text="@string/main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+ <Button
+     android:id="@+id/getData_btn"
+     android:layout_width="100dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="50dp"
+     android:layout_marginEnd="40dp"
+     android:text="Get Data"
+     app:layout_constraintEnd_toStartOf="@+id/button"
+     app:layout_constraintTop_toBottomOf="@+id/button" />
 
-    <Button
-        android:id="@+id/manual_btn"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="#A7FFEB"
-        android:text="@string/manual"
-        app:layout_constraintEnd_toStartOf="@+id/main_btn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/auto_btn"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:background="#A7FFEB"
-        android:text="@string/auto"
-        app:layout_constraintStart_toEndOf="@+id/main_btn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/go_btn"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp"
-        android:background="#CCFF90"
-        android:text="@string/go"
-        app:layout_constraintBottom_toTopOf="@+id/bluetooth_connect_btn"
-        app:layout_constraintEnd_toStartOf="@+id/button" />
-
-    <Button
-        android:id="@+id/stop_btn"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="40dp"
-        android:background="#FF8A80"
-        android:text="@string/stop"
-        app:layout_constraintBottom_toTopOf="@+id/bluetooth_connect_btn"
-        app:layout_constraintStart_toEndOf="@+id/button" />
-
-    <Button
-        android:id="@+id/bluetooth_connect_btn"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
-        android:background="#82B1FF"
-        android:text="@string/connect"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#FFD180"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/robotData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Test"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_btn" />
-
-    <Button
-        android:id="@+id/getData_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:text="Get Data"
-        app:layout_constraintEnd_toStartOf="@+id/robotData"
-        app:layout_constraintTop_toBottomOf="@+id/main_btn" />
+ <TextView
+     android:id="@+id/robotData"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="120dp"
+     android:text="Test"
+     android:textAlignment="center"
+     android:textColor="#FFFFFF"
+     android:textSize="24sp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

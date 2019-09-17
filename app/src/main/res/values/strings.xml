@@ -9,5 +9,8 @@
     <string name="main">Main menu</string>
     <string name="go">Go</string>
     <string name="stop">Stop</string>
-    <string name="connect">Connect to Bluetooth Device</string>
+    <string name="connect">Connect to Device</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
