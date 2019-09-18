@@ -31,13 +31,13 @@
      app:layout_constraintTop_toTopOf="parent" />
 
  <Button
-     android:id="@+id/bluetooth_connect_btn"
+     android:id="@+id/devicelist_btn"
      android:layout_width="100dp"
      android:layout_height="50dp"
      android:layout_marginStart="40dp"
      android:layout_marginTop="50dp"
      android:background="#8C9EFF"
-     android:text="@string/connect"
+     android:text="@string/list"
      app:layout_constraintStart_toEndOf="@+id/button"
      app:layout_constraintTop_toBottomOf="@+id/button" />
 
