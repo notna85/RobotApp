@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected static OutputStream outputStream;
     private InputStream inputStream;
 
+
+
     Button devicelist_btn, manual_btn, auto_btn, getData_btn;
     TextView robotData;
 
@@ -121,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
             int byteCount = inputStream.available();
             byte[] rawBytes = new byte[byteCount];
             inputStream.read(rawBytes);
+            //Get distance travelled from db
+
             final String getData = new String(rawBytes, "UTF-8");
             handler.post(new Runnable()
             {

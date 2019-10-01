@@ -31,6 +31,7 @@ public class BlueTooth extends Fragment
     private ArrayList<String> deviceList = new ArrayList<>();
     private ArrayList<String> deviceAddress = new ArrayList<>();
     private BluetoothAdapter bluetoothAdapter;
+    public String address;
 
     public BlueTooth()
     {
@@ -88,7 +89,7 @@ public class BlueTooth extends Fragment
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                String address = deviceAddress.get(i) + "";
+                address = deviceAddress.get(i) + "";
                 BTconnect(address);
             }
         });

@@ -1,4 +1,5 @@
 package com.example.boldi.bluetoothcarcontroller;
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.PrimaryKey;
 import androidx.room.Entity;
@@ -6,7 +7,8 @@ import androidx.room.Entity;
 @Entity(tableName = "distance")
 public class Distance {
     @PrimaryKey
-    @ColumnInfo(name = "roboId")
+    @NonNull
+    @ColumnInfo(name = "robo_Id")
     public String roboId;
 
     @ColumnInfo(name = "distance_travelled")
