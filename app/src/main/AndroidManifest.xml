@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--   installLocation auto = app can be installed on external memory eg SD card-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:installLocation="auto"
     package="com.example.boldi.bluetoothcarcontroller">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
