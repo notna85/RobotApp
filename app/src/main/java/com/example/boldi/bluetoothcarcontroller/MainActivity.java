@@ -4,6 +4,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     BlueTooth BT = new BlueTooth();
     protected static OutputStream outputStream;
     private InputStream inputStream;
-
 
 
     Button devicelist_btn, manual_btn, auto_btn, getData_btn;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         auto_btn = findViewById(R.id.auto_btn);
         robotData = findViewById(R.id.robotData);
         getData_btn = findViewById(R.id.getData_btn);
+
+        DistanceDb db = Room.databaseBuilder(getApplicationContext(), DistanceDb.class, "Distance").build();
 
         //Button that starts manual mode
         manual_btn.setOnClickListener(new View.OnClickListener()
@@ -117,25 +121,26 @@ public class MainActivity extends AppCompatActivity {
     public void displayData()
     {
         Handler handler = new Handler();
-        inputStream = BT.inputStream;
+      //  inputStream = BT.inputStream;
         try
         {
-            int byteCount = inputStream.available();
-            byte[] rawBytes = new byte[byteCount];
-            inputStream.read(rawBytes);
-            //Get distance travelled from db
+          //  int byteCount = inputStream.available();
+            //byte[] rawBytes = new byte[byteCount];
+            //inputStream.read(rawBytes);
+            //final int driven = db.getDistance(BT.address);
+            //final String converted = Integer.toString(driven);
 
-            final String getData = new String(rawBytes, "UTF-8");
+            // final String getData = new String(rawBytes, "UTF-8");
             handler.post(new Runnable()
             {
                 public void run()
                 {
-                    robotData.setText(getData);
+                    robotData.setText("test string");
                 }
             });
             Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Get data failed", Toast.LENGTH_SHORT).show();
