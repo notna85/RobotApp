@@ -31,16 +31,12 @@ public class BlueTooth extends Fragment
     private ArrayList<String> deviceList = new ArrayList<>();
     private ArrayList<String> deviceAddress = new ArrayList<>();
     private BluetoothAdapter bluetoothAdapter;
+    static String address;
 
-    public BlueTooth()
-    {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public BlueTooth() {}
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,6 +45,9 @@ public class BlueTooth extends Fragment
         View BTView = inflater.inflate(R.layout.fragment_blue_tooth, container, false);
 
         ListView devicelistView = BTView.findViewById(R.id.device_list);
+
+        RoomDB db = RoomDB.getDB(getContext());
+        final RoomDAO roomDAO = db.getRoomDAO();
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if(bluetoothAdapter == null) //Checks if the device supports bluetooth
@@ -71,10 +70,15 @@ public class BlueTooth extends Fragment
         Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
         if(bondedDevices.isEmpty()) //Checks for paired bluetooth devices
         {
-            Toast.makeText(getActivity(), "Please pair the device first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Please pair at least one device first", Toast.LENGTH_SHORT).show();
         }
         else
         {
+            if(!deviceAddress.isEmpty() || !deviceList.isEmpty())
+            {
+                deviceAddress.clear();
+                deviceList.clear();
+            }
             for(BluetoothDevice iterator : bondedDevices)
             {
                 deviceList.add(iterator.getName() + "\n" + iterator.getAddress());
@@ -88,11 +92,34 @@ public class BlueTooth extends Fragment
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                String address = deviceAddress.get(i) + "";
-                BTconnect(address);
+                address = deviceAddress.get(i) + "";
+                if( BTconnect(address) )
+                {
+                    String id = roomDAO.getID(address);
+                    if( id == null )
+                    {
+                        RoomTable entry = new RoomTable();
+                        entry.setRobotID(address);
+                        entry.setDistanceTravelled(0);
+                        entry.setClothChanged(0);
+                        roomDAO.insert(entry);
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(),"Device exists in DB", Toast.LENGTH_SHORT).show();
+                    }
+                    try
+                    {
+                        String distance = Integer.toString(roomDAO.getDistance(address));
+                        outputStream.write(distance.getBytes());
+                    }
+                    catch(IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
-
         return BTView;
     }
     public boolean BTconnect(String address)
@@ -116,7 +143,7 @@ public class BlueTooth extends Fragment
             try
             {
                 outputStream = socket.getOutputStream(); //gets the output stream of the socket
-                inputStream = socket.getInputStream();
+                inputStream = socket.getInputStream(); //gets the input stream of the socket
             }
             catch(IOException e)
             {

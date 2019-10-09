@@ -10,20 +10,21 @@ import android.view.MotionEvent;
 import androidx.fragment.app.Fragment;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+
 
 public class ManualMode extends Fragment
 {
-    MainActivity MA = new MainActivity();
-    OutputStream outputStream = MA.outputStream;
-    //OutputStream outputStream = MainActivity.outputStream;
+    BlueTooth BT = new BlueTooth();
+    static OutputStream outputStream;
+    static InputStream inputStream;
     Button forward_btn, forward_left_btn, forward_right_btn, reverse_btn;
     String command;
 
-    public ManualMode()
-    {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+    public ManualMode() {}
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,6 +41,12 @@ public class ManualMode extends Fragment
         forward_left_btn = manualView.findViewById(R.id.left_btn);
         forward_right_btn = manualView.findViewById(R.id.right_btn);
         reverse_btn = manualView.findViewById(R.id.reverse_btn);
+
+        outputStream = BT.outputStream;
+        inputStream = BT.inputStream;
+
+        RoomDB db = RoomDB.getDB(getContext());
+        final RoomDAO roomDAO = db.getRoomDAO();
 
         //OnTouchListener code for the forward button (button long press)
         forward_btn.setOnTouchListener(new View.OnTouchListener()
@@ -66,8 +73,9 @@ public class ManualMode extends Fragment
                     try
                     {
                         outputStream.write(command.getBytes());
+                        sendDataToDB(roomDAO);
                     }
-                    catch(IOException e)
+                    catch(Exception e)
                     {
                         e.printStackTrace();
                     }
@@ -99,6 +107,7 @@ public class ManualMode extends Fragment
                     try
                     {
                         outputStream.write(command.getBytes());
+                        sendDataToDB(roomDAO);
                     }
                     catch(IOException e)
                     {
@@ -176,5 +185,21 @@ public class ManualMode extends Fragment
         });
 
         return manualView;
+    }
+    public void sendDataToDB(final RoomDAO roomDAO)
+    {
+        try
+        {
+            Thread.sleep(100); //A slight pause to give the app time to receive the full inputstream
+            int byteCount = inputStream.available();
+            byte[] rawBytes = new byte[byteCount];
+            inputStream.read(rawBytes);
+            int distance = Integer.parseInt(new String(rawBytes, "UTF-8"));
+            roomDAO.updateDistance(distance, BT.address);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
