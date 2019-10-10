@@ -124,13 +124,9 @@ public class MainActivity extends AppCompatActivity {
       //  inputStream = BT.inputStream;
         try
         {
-          //  int byteCount = inputStream.available();
-            //byte[] rawBytes = new byte[byteCount];
-            //inputStream.read(rawBytes);
-            //final int driven = db.getDistance(BT.address);
-            //final String converted = Integer.toString(driven);
+       ////////db kald getDistance if((clothEvents * 100 + roboDistance + dbDistance) >= clothEvents * 100 +100)
+            ///// {Skift farve på app indikator, stop robotten}
 
-            // final String getData = new String(rawBytes, "UTF-8");
             handler.post(new Runnable()
             {
                 public void run()
