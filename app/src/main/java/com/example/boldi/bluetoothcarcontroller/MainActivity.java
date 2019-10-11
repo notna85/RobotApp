@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
     protected static OutputStream outputStream;
     protected static InputStream inputStream;
     Handler handler = new Handler();
-    String distance;
+    String distance, cloth;
 
-    Button devicelist_btn, manual_btn, auto_btn, getData_btn;
-    TextView robotData;
+    Button devicelist_btn, manual_btn, auto_btn, getData_btn, changeCloth_btn;
+    TextView DistanceData, ClothData;
 
     String command; //string variable that will store value to be transmitted to the bluetooth module
 
@@ -39,11 +39,19 @@ public class MainActivity extends AppCompatActivity {
         devicelist_btn = findViewById(R.id.devicelist_btn);
         manual_btn = findViewById(R.id.manual_btn);
         auto_btn = findViewById(R.id.auto_btn);
-        robotData = findViewById(R.id.robotData);
         getData_btn = findViewById(R.id.getData_btn);
+        changeCloth_btn = findViewById(R.id.changeCloth_btn);
+        DistanceData = findViewById(R.id.distanceData);
+        ClothData = findViewById(R.id.ClothData);
+
 
         RoomDB db = RoomDB.getDB(this);
         final RoomDAO roomDAO = db.getRoomDAO();
+
+        roomDAO.deleteAll();
+
+        outputStream = BT.outputStream;
+        inputStream = BT.inputStream;
 
         //Button that starts manual mode
         manual_btn.setOnClickListener(new View.OnClickListener()
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 outputStream = BT.outputStream;
+                inputStream = BT.inputStream;
                 command = "M";
                 if(outputStream != null)
                 {
@@ -61,10 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         outputStream.write(command.getBytes());
                         addFragment(new ManualMode(), false, "manual mode");
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch (IOException e) { e.printStackTrace(); }
                 }
                 else
                 {
@@ -78,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                command = "A";
                 outputStream = BT.outputStream;
                 inputStream = BT.inputStream;
-                command = "A";
                 if(outputStream != null)
                 {
                     try
@@ -89,10 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         outputStream.write(command.getBytes());
                         addFragment(new AutoMode(), false, "auto mode");
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch (IOException e) { e.printStackTrace(); }
                 }
                 else
                 {
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //Button that shows all the paired devices
+        //Button that shows a list of all the paired devices
         devicelist_btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -109,17 +112,34 @@ public class MainActivity extends AppCompatActivity {
                 addFragment(new BlueTooth(), false, "device list");
             }
         });
-        //Button that gets robot data
+        //Button that gets and displays robot data
         getData_btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 displayData(roomDAO);
             }
         });
+
+        changeCloth_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                command = "C";
+                try
+                {
+                    int distance = roomDAO.getDistance(BT.address);
+                    int cloth = roomDAO.getCloth(BT.address);
+                    if(cloth < distance / 10)
+                    {
+                        roomDAO.updateCloth(1, BT.address);
+                    }
+                    outputStream.write(command.getBytes());
+                }
+                catch (IOException e) { e.printStackTrace(); }
+            }
+        });
     }
-    public void displayData(final RoomDAO roomDAO)
+    public void displayData(final RoomDAO roomDAO) //Method that queries the database and pulls the requested data
     {
         try
         {
@@ -127,10 +147,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     distance = Integer.toString(roomDAO.getDistance(BT.address));
-
+                    cloth = Integer.toString(roomDAO.getCloth(BT.address));
                     handler.post(new Runnable() {
                         public void run() {
-                            robotData.setText(distance);
+                            DistanceData.setText(distance);
+                            ClothData.setText(cloth);
                             Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                         }
                     });

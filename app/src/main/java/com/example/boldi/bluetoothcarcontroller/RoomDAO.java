@@ -19,16 +19,20 @@ public interface RoomDAO
     @Query("SELECT * FROM robotData WHERE robotID = :id")
     RoomTable getDataByID(String id);
 
-    @Query("SELECT distanceTravelled FROM robotData WHERE robotID = :id")
-    int getDistance(String id);
-
     @Query("SELECT robotID FROM robotData WHERE robotID = :id")
     String getID(String id);
 
-    @Query("UPDATE robotData SET distanceTravelled = :distance WHERE robotID = :id")
+    @Query("SELECT distanceTravelled FROM robotData WHERE robotID = :id")
+    int getDistance(String id);
+
+    @Query("SELECT clothChanged FROM robotData WHERE robotID = :id")
+    int getCloth(String id);
+
+
+    @Query("UPDATE robotData SET distanceTravelled = distanceTravelled + :distance WHERE robotID = :id")
     void updateDistance(int distance, String id);
 
-    @Query("UPDATE robotData SET clothChanged = :cloth WHERE robotID = :id")
+    @Query("UPDATE robotData SET clothChanged = clothChanged + :cloth WHERE robotID = :id")
     void updateCloth(int cloth, String id);
 
     //For testing purposes

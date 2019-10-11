@@ -21,6 +21,8 @@ public class ManualMode extends Fragment
     static InputStream inputStream;
     Button forward_btn, forward_left_btn, forward_right_btn, reverse_btn;
     String command;
+    String currentDistance;
+    String clothChange;
 
     // Required empty public constructor
     public ManualMode() {}
@@ -62,10 +64,7 @@ public class ManualMode extends Fragment
                     {
                         outputStream.write(command.getBytes()); //transmits the value of command to the bluetooth module
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch (IOException e) { e.printStackTrace(); }
                 }
                 else if(event.getAction() == MotionEvent.ACTION_UP) //MotionEvent.ACTION_UP is when you release a button
                 {
@@ -73,12 +72,10 @@ public class ManualMode extends Fragment
                     try
                     {
                         outputStream.write(command.getBytes());
+                        outputStream.write(command.getBytes());
                         sendDataToDB(roomDAO);
                     }
-                    catch(Exception e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch(Exception e) { e.printStackTrace(); }
                 }
                 return false;
             }
@@ -96,10 +93,7 @@ public class ManualMode extends Fragment
                     {
                         outputStream.write(command.getBytes());
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch (IOException e) { e.printStackTrace(); }
                 }
                 else if(event.getAction() == MotionEvent.ACTION_UP)
                 {
@@ -107,12 +101,11 @@ public class ManualMode extends Fragment
                     try
                     {
                         outputStream.write(command.getBytes());
+                        outputStream.write(command.getBytes());
                         sendDataToDB(roomDAO);
                     }
-                    catch(IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch(IOException e) { e.printStackTrace(); }
+
                 }
                 return false;
             }
@@ -130,10 +123,7 @@ public class ManualMode extends Fragment
                     {
                         outputStream.write(command.getBytes());
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch (IOException e) { e.printStackTrace(); }
                 }
                 else if(event.getAction() == MotionEvent.ACTION_UP)
                 {
@@ -142,10 +132,7 @@ public class ManualMode extends Fragment
                     {
                         outputStream.write(command.getBytes());
                     }
-                    catch(IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch(IOException e) { e.printStackTrace(); }
                 }
                 return false;
             }
@@ -163,10 +150,7 @@ public class ManualMode extends Fragment
                     {
                         outputStream.write(command.getBytes());
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch (IOException e) { e.printStackTrace(); }
                 }
                 else if(event.getAction() == MotionEvent.ACTION_UP)
                 {
@@ -175,10 +159,7 @@ public class ManualMode extends Fragment
                     {
                         outputStream.write(command.getBytes());
                     }
-                    catch(IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    catch(IOException e) { e.printStackTrace(); }
                 }
                 return false;
             }
@@ -190,7 +171,7 @@ public class ManualMode extends Fragment
     {
         try
         {
-            Thread.sleep(100); //A slight pause to give the app time to receive the full inputstream
+            Thread.sleep(100); //A slight pause to give the app time to receive the full inputStream
             int byteCount = inputStream.available();
             byte[] rawBytes = new byte[byteCount];
             inputStream.read(rawBytes);

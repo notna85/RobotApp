@@ -96,7 +96,7 @@ public class BlueTooth extends Fragment
                 if( BTconnect(address) )
                 {
                     String id = roomDAO.getID(address);
-                    if( id == null )
+                    if( id == null ) //If the device does not already exist in the database, a new entry is inserted
                     {
                         RoomTable entry = new RoomTable();
                         entry.setRobotID(address);
@@ -104,25 +104,12 @@ public class BlueTooth extends Fragment
                         entry.setClothChanged(0);
                         roomDAO.insert(entry);
                     }
-                    else
-                    {
-                        Toast.makeText(getActivity(),"Device exists in DB", Toast.LENGTH_SHORT).show();
-                    }
-                    try
-                    {
-                        String distance = Integer.toString(roomDAO.getDistance(address));
-                        outputStream.write(distance.getBytes());
-                    }
-                    catch(IOException e)
-                    {
-                        e.printStackTrace();
-                    }
                 }
             }
         });
         return BTView;
     }
-    public boolean BTconnect(String address)
+    public boolean BTconnect(String address) //Method that establishes a Bluetooth connection between the device and the app.
     {
         boolean connected = true;
         try

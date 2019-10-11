@@ -4,90 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#555A5A"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context="com.example.boldi.bluetoothcarcontroller.MainActivity">
 
- <Button
-     android:id="@+id/manual_btn"
-     android:layout_width="100dp"
-     android:layout_height="80dp"
-     android:layout_marginTop="20dp"
-     android:layout_marginEnd="40dp"
-     android:background="#A7FFEB"
-     android:text="@string/manual"
-     app:layout_constraintEnd_toStartOf="@+id/button"
-     app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/manual_btn"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/button_roundcorners"
+        android:text="@string/manual"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
 
- <Button
-     android:id="@+id/auto_btn"
-     android:layout_width="100dp"
-     android:layout_height="80dp"
-     android:layout_marginStart="40dp"
-     android:layout_marginTop="20dp"
-     android:background="#A7FFEB"
-     android:text="@string/auto"
-     app:layout_constraintStart_toEndOf="@+id/button"
-     app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/auto_btn"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/button_roundcorners"
+        android:text="@string/auto"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
 
- <Button
-     android:id="@+id/devicelist_btn"
-     android:layout_width="100dp"
-     android:layout_height="50dp"
-     android:layout_marginStart="40dp"
-     android:layout_marginTop="50dp"
-     android:background="#8C9EFF"
-     android:text="@string/list"
-     app:layout_constraintStart_toEndOf="@+id/button"
-     app:layout_constraintTop_toBottomOf="@+id/button" />
+    <Button
+        android:id="@+id/devicelist_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="110dp"
+        android:background="@android:drawable/stat_sys_data_bluetooth"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
 
- <Button
-     android:id="@+id/button"
-     android:layout_width="20dp"
-     android:layout_height="20dp"
-     android:layout_marginStart="8dp"
-     android:layout_marginTop="50dp"
-     android:layout_marginEnd="8dp"
-     android:background="#FFD180"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="8dp"
+        android:background="#FFD180"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
- <Button
-     android:id="@+id/getData_btn"
-     android:layout_width="100dp"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="50dp"
-     android:layout_marginEnd="40dp"
-     android:text="Get Data"
-     app:layout_constraintEnd_toStartOf="@+id/button"
-     app:layout_constraintTop_toBottomOf="@+id/button" />
+    <Button
+        android:id="@+id/getData_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@android:drawable/ic_dialog_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/ClothData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#DDDDAA"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/ClothChanged"
+        app:layout_constraintTop_toBottomOf="@+id/ClothChanged" />
+
+    <TextView
+        android:id="@+id/ClothChanged"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="80dp"
+        android:text="ClothChanged"
+        android:textAlignment="center"
+        android:textColor="#BBBBBB"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
- <TextView
-     android:id="@+id/robotData"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="120dp"
-     android:text="Test"
-     android:textAlignment="center"
-     android:textColor="#FFFFFF"
-     android:textSize="24sp"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/distanceData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#DDDDAA"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/DistanceTravelled"
+        app:layout_constraintTop_toBottomOf="@+id/DistanceTravelled" />
+
+    <TextView
+        android:id="@+id/DistanceTravelled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="10dp"
+        android:text="DistanceTravelled"
+        android:textAlignment="center"
+        android:textColor="#BBBBBB"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/changeCloth_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_circle"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
