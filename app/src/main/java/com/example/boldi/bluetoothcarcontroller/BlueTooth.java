@@ -74,7 +74,7 @@ public class BlueTooth extends Fragment
         }
         else
         {
-            if(!deviceAddress.isEmpty() || !deviceList.isEmpty())
+            if(!deviceAddress.isEmpty() || !deviceList.isEmpty()) //Clears the list to avoid any duplicated entries
             {
                 deviceAddress.clear();
                 deviceList.clear();
@@ -95,7 +95,7 @@ public class BlueTooth extends Fragment
                 address = deviceAddress.get(i) + "";
                 if( BTconnect(address) )
                 {
-                    String id = roomDAO.getID(address);
+                    String id = roomDAO.getID(address); //Checks the database if address already exists
                     if( id == null ) //If the device does not already exist in the database, a new entry is inserted
                     {
                         RoomTable entry = new RoomTable();

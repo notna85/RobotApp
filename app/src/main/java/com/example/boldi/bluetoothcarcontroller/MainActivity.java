@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 displayData(roomDAO);
             }
         });
-
+        //Button that lets the robot know you've changed to a new cloth
         changeCloth_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Get data failed", Toast.LENGTH_SHORT).show();
         }
     }
-    public void addFragment(Fragment fragment, boolean addToBackStack, String tag)
+    public void addFragment(Fragment fragment, boolean addToBackStack, String tag) //Replaces MainActivity's fragment container with the supplied fragment class
     {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();

@@ -21,8 +21,6 @@ public class ManualMode extends Fragment
     static InputStream inputStream;
     Button forward_btn, forward_left_btn, forward_right_btn, reverse_btn;
     String command;
-    String currentDistance;
-    String clothChange;
 
     // Required empty public constructor
     public ManualMode() {}
@@ -167,7 +165,7 @@ public class ManualMode extends Fragment
 
         return manualView;
     }
-    public void sendDataToDB(final RoomDAO roomDAO)
+    public void sendDataToDB(final RoomDAO roomDAO) //Method that receives data from the robot and sends it to the database
     {
         try
         {

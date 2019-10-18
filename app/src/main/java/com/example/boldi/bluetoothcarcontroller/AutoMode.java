@@ -37,7 +37,7 @@ public class AutoMode extends Fragment
         go_btn = autoView.findViewById(R.id.go_btn);
         stop_btn = autoView.findViewById(R.id.stop_btn);
 
-        //Button that goes
+        //Button that starts the auto run
         go_btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -54,7 +54,7 @@ public class AutoMode extends Fragment
                 }
             }
         });
-        //Button that stops
+        //Button that stops the current auto run
         stop_btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
